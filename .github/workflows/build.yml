@@ -1,0 +1,23 @@
+name: Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: "Build on Windows"
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Build
+        run: make
+      
+      - name: Upload client to GitHub release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GHACTIONS_TOKEN }}
+          automatic_release_tag: latest
+          prerelease: false
+          title: "[CD] Build"
+          files: DeepFaceKey.exe

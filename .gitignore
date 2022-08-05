@@ -1,0 +1,5 @@
+bin/
+DeepFaceLab/
+DeepFaceKey*
+*.log
+.torrent.db*
